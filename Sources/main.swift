@@ -11,9 +11,9 @@ for animal in farm.animals {
     case let cow as Cow:
         print("\(cow.type): Milk per day: \(cow.milkPerDay), Grass requirements: \(cow.grassRequirements)")
     case let dog as Dog:
-        print("\(dog.type):Name: \(dog.name), Speed: \(dog.speed), Command abilities: \(dog.commandAbilities.joined(separator: ", "))")
+        print("\(dog.type): Name: \(dog.name), Speed: \(dog.speed), Command abilities: \(dog.commandAbilities.joined(separator: ", "))")
     case let fish as Fish:
-        print("\(fish.type):Weight: \(fish.weight), Swimming speed: \(fish.swimmingSpeed), Scale color: \(fish.scaleColor)")
+        print("\(fish.type): Weight: \(fish.weight), Swimming speed: \(fish.swimmingSpeed), Scale color: \(fish.scaleColor)")
     default:
         break
     }
