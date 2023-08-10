@@ -2,9 +2,10 @@
 // https://docs.swift.org/swift-book
 
 
-let parser = AnimalParser()
-let farm = try! parser.parse()
+let farm = try! Parser.parse()
+
 print("Farm name: \(farm.farmName)")
+
 for animal in farm.animals {
     print("Animal type: \(animal.type)")
     if let cow = animal as? Cow {
@@ -15,4 +16,3 @@ for animal in farm.animals {
         print("Weight: \(fish.weight), Swimming speed: \(fish.swimmingSpeed), Scale color: \(fish.scaleColor)")
     }
 }
-
