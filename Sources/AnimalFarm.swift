@@ -59,7 +59,7 @@ extension Farm {
         
         while !animalsArrayContainer.isAtEnd {
             let animalDict = try animalsArrayContainer.decode([String: AnyCodable].self)
-            if let typeValue = animalDict["type"]?.stringValue, let type = AnimalTypes(rawValue: typeValue) {
+            if let typeValue = animalDict["type"]?.value as? String, let type = AnimalTypes(rawValue: typeValue) {
                 let animalData = try JSONEncoder().encode(animalDict)
                 switch type {
                 case .cow:
@@ -84,10 +84,6 @@ struct AnyCodable: Codable {
 
     init<T>(_ value: T?) {
         self.value = value as Any
-    }
-    
-    var stringValue: String {
-        return "\(value)"
     }
 
     init(from decoder: Decoder) throws {
