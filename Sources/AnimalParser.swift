@@ -8,26 +8,42 @@
 import Foundation
 
 
-fileprivate let filePath = "/Users/rafal.manka/Documents/emirates/animals/Sources/animals.json"
+let farmJson = """
+{
+    "animals": [
+        {
+            "cow": {
+                "milkPerDay": 10,
+                "grassRequirements": 20
+            }
+        },
+        {
+            "dog": {
+                "commandAbilities": [
+                    "fetch"
+                ],
+                "speed": 2,
+                "name": "hau hau"
+            }
+        },
+        {
+            "fish": {
+                "swimmingSpeed": 1,
+                "weight": 1,
+                "scaleColor": "blue"
+            }
+        }
+    ],
+    "farmName": "farmName"
+}
+"""
 
 class AnimalParser {
     
     func parse() throws -> Farm {
-        let jsonData = readJSONFromFile(fileName: filePath)!
-        let farm = try! JSONDecoder().decode(Farm.self, from: jsonData)
+        let data = farmJson.data(using: .utf8)
+        let farm = try! JSONDecoder().decode(Farm.self, from: data!)
         return farm
     }
     
-    func readJSONFromFile(fileName: String) -> Data? {
-        let fileManager = FileManager.default
-        let filePath =  fileName
-        let url = URL(fileURLWithPath: filePath)
-        
-        guard let data = try? Data(contentsOf: url) else {
-            print("Unable to read the file \(fileName)")
-            return nil
-        }
-        
-        return data
-    }
 }
