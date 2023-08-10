@@ -8,23 +8,21 @@
 import Foundation
 
 
-fileprivate let filePath = "/Users/rafal.manka/Documents/emirates/animals/Sources/animals.json"
+fileprivate let absoluteFilePath = "/Users/rafal.manka/Documents/emirates/animals/Sources/animals.json"
 
 class AnimalParser {
     
     func parse() throws -> Farm {
-        let jsonData = readJSONFromFile(fileName: filePath)!
+        let jsonData = readJSONFromFile(filePath: absoluteFilePath)!
         let farm = try! JSONDecoder().decode(Farm.self, from: jsonData)
         return farm
     }
     
-    func readJSONFromFile(fileName: String) -> Data? {
-        let fileManager = FileManager.default
-        let filePath =  fileName
+    func readJSONFromFile(filePath: String) -> Data? {
         let url = URL(fileURLWithPath: filePath)
         
         guard let data = try? Data(contentsOf: url) else {
-            print("Unable to read the file \(fileName)")
+            print("Unable to read the file \(filePath)")
             return nil
         }
         
