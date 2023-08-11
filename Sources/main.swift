@@ -1,8 +1,34 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
+import Foundation
 
-let farm = try! Parser.parse()
+let json = """
+{
+   "farmName": "Green Acres",
+   "animals": [
+       {
+           "type": "cow",
+           "milkPerDay": 10,
+           "grassRequirements": 20
+       },
+       {
+           "type": "dog",
+           "speed": 30,
+           "name": "Buddy",
+           "commandAbilities": ["sit", "fetch"]
+       },
+       {
+           "type": "fish",
+           "weight": 5,
+           "swimmingSpeed": 15,
+           "scaleColor": "blue"
+       }
+   ]
+}
+"""
+
+let farm = try! JSONDecoder().decode(Farm.self, from: Data(json.utf8))
 
 print("Farm name: \(farm.farmName)")
 
